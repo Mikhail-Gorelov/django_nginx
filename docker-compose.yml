@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/prod/Dockerfile
+    image: mushroom3/django-nginx-service:${DOCKER_TAG:-latest}
+    container_name: nginx
+    network_mode: host
+    privileged: true
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    environment:
+      CERTBOT_EMAIL: gorelovmihail0@gmail.com
+      # variable names are space-separated
+      ENVSUBST_VARS: APP_BLOG APP_CHAT
+      APP_BLOG: blog.mikhail.jollymanager.com
+      APP_CHAT: chat.mikhail.jollymanager.com
