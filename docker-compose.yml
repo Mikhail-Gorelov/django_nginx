@@ -17,3 +17,4 @@ services:
       ENVSUBST_VARS: APP_BLOG APP_CHAT
       APP_BLOG: blog.mikhail.jollymanager.com
       APP_CHAT: chat.mikhail.jollymanager.com
+    restart: always
