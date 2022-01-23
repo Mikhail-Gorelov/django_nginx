@@ -25,7 +25,7 @@ jobs:
         run: docker-compose build --pull
 
       - name: Test nginx syntax
-      - run: docker-compose exec nginx nginx -t
+        run: docker-compose exec nginx nginx -t
 
       - name: Push to Docker hub
         run: docker-compose push
