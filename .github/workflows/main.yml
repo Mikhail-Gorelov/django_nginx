@@ -20,12 +20,11 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: Build the Docker image
+      - name: Build the Docker image and test syntax
         id: docker_build
-        run: docker-compose build --pull
-
-      - name: Test nginx syntax
-        run: docker-compose exec nginx nginx -t
+        run: |
+          docker-compose build --pull
+          docker-compose exec nginx nginx -t
 
       - name: Push to Docker hub
         run: docker-compose push
