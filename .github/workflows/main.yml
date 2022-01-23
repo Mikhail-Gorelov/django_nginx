@@ -22,9 +22,12 @@ jobs:
 
       - name: Build the Docker image and test syntax
         id: docker_build
+        run: docker-compose build --pull
+
+      - name: Test nginx syntax
         run: |
-          docker-compose build --pull
-          docker-compose exec nginx nginx -t
+        docker-compose up -d
+        docker-compose exec nginx nginx -t
 
       - name: Push to Docker hub
         run: docker-compose push
